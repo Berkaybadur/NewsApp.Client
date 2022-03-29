@@ -1,0 +1,61 @@
+﻿@model NewsNewsTagMapQueryResponseViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form method="post" action="@Url.Action("Edit", "NewsNewsTagMap")">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Project Add</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">NewsNewsTagMap Edit</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">General</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="col-lg-6">
+                                @Html.Label("NewsId")
+                                @Html.DropDownListFor(model => model.NewsId, Model.NewsIds, "--Select an Type--",
+                                new { type = "text", @class = "form-control", required = "required", @placeholder = "NewsId" })
+                                @Html.ValidationMessageFor(c => c.NewsIds.First().Value)
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.Label("TagId")
+                                @Html.DropDownListFor(model => model.TagId, Model.NewsTagIds, "--Select an Type--",
+                                new { type = "text", @class = "form-control", required = "required", @placeholder = "NewsId" })
+                                @Html.ValidationMessageFor(c => c.NewsIds.First().Value)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input style="position:center" type="submit" value="Edit" class="btn btn-success float-right">
+                </div>
+            </div>
+        </section>
+    </div>
+</form>
+

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ListNewsImageQueryResponseViewModel>
+@{
+    ViewData["Title"] = "NewsImage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["Message"] != null)
+{
+    <script>
+        alert('@Html.Raw(TempData["Message"])')
+    </script>
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>DataTables</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header btn-success btn-lg">
+                            <a href="@Url.Action("Create", "NewsImage")">NewsImage Create </a>
+                        </div>
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>NewsId</th>
+                                        <th>ImagePath</th>
+                                        <th>DisplayOrder</th>
+                                        <th>CreatedDate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.NewsId</td>
+                                        <td>@item.ImagePath</td>
+                                        <td>@item.DisplayOrder</td>
+                                        <td>@item.CreatedDate</td>
+                                        <td><a href="@Url.Action("Edit", "NewsImage",new { id = item.Id})">NewsImage Update </a></td>
+                                        <td><a href="@Url.Action("Remove", "NewsImage",new { id = item.Id})">NewsImage Delete </a></td>
+                                    </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+

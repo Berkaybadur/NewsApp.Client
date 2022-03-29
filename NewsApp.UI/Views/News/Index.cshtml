@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ListNewsQueryResponseViewModel>
+
+@{
+    ViewData["Title"] = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>DataTables</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="@Url.Action("Create", "News")">News Create </a>
+                        </div>
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>DisplayOrder</th>
+                                        <th>ProviderNewsId</th>
+                                        <th>Link</th>
+                                        <th>Language</th>
+                                        <th>XmlPath</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.Title</td>
+                                        @if (item.Description.Length > 20)
+                                        {
+                                            <td>@item.Description.Substring(0, 20)</td>
+                                        }
+                                        else
+                                        {
+                                            <td>@item.Description</td>
+                                        }
+                                        <td>@item.DisplayOrder</td>
+                                        <td>@item.ProviderNewsId</td>
+                                        <td>@item.Link</td>
+                                        <td>@item.Language</td>
+                                        <td>@item.XmlPath</td>
+                                        <td><a href="@Url.Action("Edit", "News",new { id = item.Id})">News Update </a></td>
+                                        <td><a href="@Url.Action("Remove", "News",new { id = item.Id})">News Delete </a></td>
+                                    </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
